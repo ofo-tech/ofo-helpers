@@ -1,6 +1,6 @@
 {
   "name": "ofo-helpers",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "OFO Tech Helpers",
   "main": "index.js",
   "scripts": {
