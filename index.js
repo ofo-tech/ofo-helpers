@@ -52,3 +52,17 @@ export const isValidURL = str => {
     '(\\#[-a-z\\d_]*)?$', 'i'); // fragment locator
   return !!pattern.test(str);
 }
+
+export const splitArray = (arr, n) => {
+  const chunkLength = Math.floor(arr.length / n);
+  const chunks = [];
+  let tempArr = [];
+  arr.forEach((element, index) => {
+    tempArr.push(element);
+    if ((arr.length == 1 || index != 0) && (index % chunkLength == 0 || index == arr.length - 1)) {
+      chunks.push(tempArr);
+      tempArr = [];
+    }
+  });
+  return chunks;
+}
