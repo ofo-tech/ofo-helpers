@@ -1,4 +1,4 @@
-export const reorder_rectangle_points = points => {
+const reorder_rectangle_points = points => {
   const output = [];
   let lowestX = Number.POSITIVE_INFINITY;
   let lowestY = Number.POSITIVE_INFINITY;
@@ -39,11 +39,11 @@ export const reorder_rectangle_points = points => {
   return output;
 }
 
-export const toTitle = str => !str ? '' : str.split(' ').map(s => s.charAt(0).toUpperCase() + s.slice(1)).join(' ');
+const toTitle = str => !str ? '' : str.split(' ').map(s => s.charAt(0).toUpperCase() + s.slice(1)).join(' ');
 
-export const isDefined = i => typeof i != 'undefined' && i != null;
+const isDefined = i => typeof i != 'undefined' && i != null;
 
-export const isValidURL = str => {
+const isValidURL = str => {
   var pattern = new RegExp('^(https?:\\/\\/)?' + // protocol
     '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|' + // domain name
     '((\\d{1,3}\\.){3}\\d{1,3}))' + // OR ip (v4) address
@@ -53,7 +53,7 @@ export const isValidURL = str => {
   return !!pattern.test(str);
 }
 
-export const splitArray = (arr, n) => {
+const splitArray = (arr, n) => {
   const chunkLength = Math.floor(arr.length / n);
   const chunks = [];
   let tempArr = [];
@@ -65,4 +65,25 @@ export const splitArray = (arr, n) => {
     }
   });
   return chunks;
+}
+
+// params are arrays of arrays
+function mergeArraysOfObjectsUniqueById() {
+  const temp = {};
+  for (let i = 0; i < arguments.length; i++) {
+    arguments[i].forEach(i => temp[i.id] = i);
+  }
+
+  let output = Object.keys(temp).map(key => temp[key]);
+  output.sort((a, b) => parseInt(a.id) - parseInt(b.id));
+  return output;
+}
+
+module.exports = {
+  mergeArraysOfObjectsUniqueById,
+  reorder_rectangle_points,
+  splitArray,
+  isValidURL,
+  isDefined,
+  toTitle
 }
