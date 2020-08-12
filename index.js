@@ -44,7 +44,8 @@ const toTitle = str => !str ? '' : str.split(' ').map(s => s.charAt(0).toUpperCa
 const isDefined = i => typeof i != 'undefined' && i != null;
 
 const isValidURL = str => {
-  var pattern = new RegExp('^(https?:\\/\\/)?' + // protocol
+  if (!str) return false;
+  const pattern = new RegExp('^(https?:\\/\\/)?' + // protocol
     '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|' + // domain name
     '((\\d{1,3}\\.){3}\\d{1,3}))' + // OR ip (v4) address
     '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*' + // port and path
