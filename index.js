@@ -80,11 +80,19 @@ function mergeArraysOfObjectsUniqueById() {
   return output;
 }
 
+function fromUTC(time) {
+  if (typeof time === 'string' && time.includes('T')) {
+    return moment(time);
+  }
+  return moment(time).add(8, "hours");
+};
+
 module.exports = {
   mergeArraysOfObjectsUniqueById,
   reorder_rectangle_points,
   splitArray,
   isValidURL,
   isDefined,
-  toTitle
+  toTitle,
+  fromUTC
 }
