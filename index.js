@@ -1,4 +1,4 @@
-const moment = require('moment');
+const moment = require('moment-timezone');
 
 const reorder_rectangle_points = points => {
   const output = [];
@@ -82,11 +82,14 @@ function mergeArraysOfObjectsUniqueById() {
   return output;
 }
 
-function fromUTC(time) {
-  if (typeof time === 'string' && time.includes('T')) {
-    return moment(time);
+function fromUTC(time, sourceTimeZone = "Asia/Kuala_Lumpur") {
+  if (!time || isNaN(new Date(time))) { // Checks for null, undefined, or invalid date
+    throw new Error('Invalid date input');
   }
-  return moment(time).add(8, "hours");
+  if (typeof time === 'string' && time.includes('T')) {
+    return moment.tz(time, sourceTimeZone);
+  }
+  return moment.tz(time, 'UTC').tz(sourceTimeZone);
 };
 
 module.exports = {
